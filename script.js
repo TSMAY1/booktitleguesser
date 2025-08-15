@@ -3,7 +3,7 @@ let secretWord = "";
 let attempts = 0;
 
 let messageElement = document.getElementById("message");
-let displayWordElement = document.getElementById("displayWord");
+let displayWord = document.getElementById("displayWord");
 let guessInput = document.getElementById("guessInput");
 let guessBtn = document.getElementById("guessBtn");
 let resetBtn = document.getElementById("resetBtn");
@@ -22,16 +22,17 @@ fetch("book_titles.json")
 function startGame() {
     secretWord = pickRandomTitle();
     guessedWord = Array(secretWord.length).fill("_");
+    attempts = 10;
+    guessBtn.disabled = false;
 
-    for (let i = 0; i < secretWord.length; i++) {
+        for (let i = 0; i < secretWord.length; i++) {
         if (secretWord[i] === " ") {
             guessedWord[i] = " ";
+            updateDisplay();
         }
     }
 
-    attempts = 10;
     updateDisplay();
-    guessBtn.disabled = false;
 }
 
 function pickRandomTitle() {
@@ -39,7 +40,10 @@ function pickRandomTitle() {
 }
 
 function updateDisplay() {
-    displayWordElement.textContent = guessedWord.join(" ");
+    displayWord = guessedWord
+        .map(char => char === " " ? "\u00A0\u00A0\u00A0" : char) // extra non-breaking spaces for actual spaces
+        .join(" ");
+    document.getElementById("displayWord").textContent = displayWord;
     messageElement.textContent = `Attempts left: ${attempts}`;
 }
 
@@ -56,6 +60,7 @@ guessBtn.addEventListener("click", () => {
         for (let i = 0; i < secretWord.length; i++) {
             if (secretWord[i].toLowerCase() === guess) {
                 guessedWord[i] = secretWord[i];
+                updateDisplay();
             }
         }
     } else {
@@ -63,7 +68,7 @@ guessBtn.addEventListener("click", () => {
 }
 
     if (!guessedWord.includes("_")) {
-        messageEl.textContent = `🎉 You guessed it! The title was: ${secretWord}`;
+        messageElement.textContent = `🎉 You guessed it! The title was: ${secretWord}`;
         guessBtn.disabled = true;
     } else if (attempts <= 0) {
         messageElement.textContent = `😢 You've run out of attempts. The title was: ${secretWord}`;

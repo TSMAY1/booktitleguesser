@@ -1,0 +1,5 @@
+#wordDisplay {
+    font-family: monospace;
+    letter-spacing: 5px; /* controls uniform spacing between letters */
+    font-size: 24px;
+}
