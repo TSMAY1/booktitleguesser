@@ -79,3 +79,8 @@ guessBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", startGame);
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        guessBtn.click();
+    }
+})
