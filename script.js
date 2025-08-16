@@ -40,10 +40,16 @@ function pickRandomTitle() {
 }
 
 function updateDisplay() {
-    displayWord = guessedWord
-        .map(char => char === " " ? "\u00A0\u00A0\u00A0" : char) // extra non-breaking spaces for actual spaces
-        .join(" ");
-    document.getElementById("displayWord").textContent = displayWord;
+displayWord = guessedWord
+    .map(char => {
+        if (char === " ") {
+            return `<span class="space"></span>`; // empty span for spaces
+        } else {
+            return `<span>${char}</span>`;
+        }
+    })
+    .join("");
+    document.getElementById("displayWord").innerHTML = displayWord;
     messageElement.textContent = `Attempts left: ${attempts}`;
 }
 

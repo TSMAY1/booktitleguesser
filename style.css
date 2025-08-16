@@ -1,57 +1,72 @@
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #de9fdd, #a54e91);
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
     text-align: center;
-    padding: 100px;
+    padding: 20px;
+    margin: 0;
+}
+
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
 #wordDisplay {
-    font-family: monospace;
-    letter-spacing: 5px;
-    font-size: 28px;
-    margin: 20px 0;
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid #7a49a5;
-    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+    margin: 20px auto;
     background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #90caf9;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-input[type="text"] {
-    padding: 10px;
-    font-size: 18px;
-    border: 2px solid #7a49a5;
-    border-radius: 8px;
-    outline: none;
-    width: 150px;
+
+#wordDisplay span {
+    font-family: monospace;
+    font-size: 28px;
+    padding: 4px;
+    min-width: 1ch;
     text-align: center;
-    transition: border 0.2s;
+    border-bottom: 2px solid #ccc; 
 }
 
-input[type="text"]:focus {
-    border-color: #7a49a5;
+
+#wordDisplay .space {
+    width: 1.5em;
+    border-bottom: none; 
+}
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background: #7a49a5;
+    background-color: #90caf9;
     color: white;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
-    margin-left: 10px;
-    transition: background 0.2s;
 }
 
 button:hover {
-    background: #7a49a5;
+    background-color: #64b5f6;
 }
 
-#message {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
+@media (max-width: 600px) {
+    #wordDisplay span {
+        font-size: 22px;
+    }
+    input, button {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
