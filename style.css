@@ -1,72 +1,81 @@
-
+/* General page setup */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
     text-align: center;
-    padding: 20px;
     margin: 0;
-}
-
-
-h1 {
+    padding: 20px;
+    background: #f8f9fa;
     color: #333;
-    margin-bottom: 20px;
 }
 
-#wordDisplay {
+/* Game container */
+#gameContainer {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Guessed word display */
+#displayWord {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(0.4rem, 1vw, 0.8rem);
-    margin: 20px auto;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid #90caf9;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin: 20px 0;
 }
 
-
-#wordDisplay span {
+#displayWord span {
+    display: inline-block;
     font-family: monospace;
-    font-size: 28px;
-    padding: 4px;
-    min-width: 1ch;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 20px;
     text-align: center;
-    border-bottom: 2px solid #ccc; 
+    border-bottom: 2px solid #ccc; /* underline for letters */
+    margin: 0 5px; /* spacing between letters */
 }
 
-
-#wordDisplay .space {
-    width: 1.5em;
-    border-bottom: none; 
+/* Extra spacing for word spaces */
+#displayWord span.space {
+    min-width: 1em;        /* ensures span doesn’t collapse */
+    margin: 0 15px;        /* visual gap between words */
+    border-bottom: none;   /* no underline for spaces */
+    content: "\00a0";      /* ensures span has content in all browsers */
 }
 
+/* Input and button styling */
 input, button {
+    font-size: 1rem;
     padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
+    margin: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 button {
-    background-color: #90caf9;
+    background: #007bff;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #64b5f6;
+button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
 }
 
+/* Responsive tweaks for mobile */
 @media (max-width: 600px) {
-    #wordDisplay span {
-        font-size: 22px;
+    #displayWord span {
+        font-size: 1.5rem;
+        margin: 0 3px;
     }
+
+    #displayWord span.space {
+        margin: 0 10px; /* slightly smaller space for mobile */
+    }
+
     input, button {
-        font-size: 14px;
-        padding: 8px;
+        width: 90%;
+        max-width: 300px;
     }
 }

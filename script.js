@@ -15,6 +15,8 @@ fetch("book_titles.json")
     .then(data => {
         wordList = data;
         startGame();
+        //secretWord = pickRandomTitle();
+        //guessBtn.disabled = false;
     });
 
 function startGame() {
@@ -41,7 +43,7 @@ function updateDisplay() {
 displayWord = guessedWord
     .map(char => {
         if (char === " ") {
-            return `<span class="space"></span>`;
+            return `<span class="space">&nbsp;</span>`; // empty span for spaces
         } else {
             return `<span>${char}</span>`;
         }
